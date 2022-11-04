@@ -15,9 +15,9 @@ public class ProductManagement {
     }
     private ProductManagement(){
         products = new HashMap<>();
-        Product product1 = new Product("1", "abc", 299, new Date(2022, 8, 10), 5);
-
-        products.put(product1, product1.getQuantity());
+//        Product product1 = new Product("product01", "Thit vit", 29900, new Date(122, 8, 10), 5);
+//
+//        products.put(product1, product1.getQuantity());
     }
 
     public void add(Product p){
@@ -42,7 +42,7 @@ public class ProductManagement {
         }
     }
 
-    public ArrayList<Product> searchByName(String name){
+    public ArrayList<Product> searchByName(String name){    /*SAI*/
         Set<Product> keys = products.keySet();
         ArrayList<Product> arr = null;
         for (Product p: keys){
@@ -72,7 +72,7 @@ public class ProductManagement {
             for (Map.Entry<Product, Integer> p: products.entrySet()){
                 cache.write(p.getKey().toString());
                 cache.write(",");
-                cache.write(p.getValue());
+                cache.write(p.getValue().toString());
                 cache.newLine();
             }
             cache.close();
@@ -87,13 +87,14 @@ public class ProductManagement {
         try {
             FileReader fileReader = new FileReader(PATH);
             BufferedReader cache02 = new BufferedReader(fileReader);
-            String line;
+
+            String line = "";
             Product p;
             while ((line = cache02.readLine()) != null){
                 p = handLine(line);
-                System.out.println(p);
+//                System.out.println(p);
                 products.put(p,p.getQuantity());
-                System.out.println(products);
+//                System.out.println(products);
 
             }
             cache02.close();

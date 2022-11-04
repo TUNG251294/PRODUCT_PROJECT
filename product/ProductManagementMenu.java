@@ -65,14 +65,14 @@ public class ProductManagementMenu {
     }
 
     private void add() {
-        System.out.println("Input ID");
+        System.out.println("Input product's ID");
         String id = scanner.nextLine();
-        System.out.println("Input name");
+        System.out.println("Input product's name");
         String name = scanner.nextLine();
-        System.out.println("Input price");
+        System.out.println("Input product's price");
         Double price = scanner.nextDouble();
         scanner.nextLine();
-        System.out.println("Input expiry");
+        System.out.println("Input expiry: MM/dd/yyyy");
         String str = scanner.nextLine();
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         Date expiry;
