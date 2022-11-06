@@ -3,29 +3,38 @@ package PRODUCT_MANAGEMENT_PROJECT.order;
 import java.util.Date;
 
 public class Order {
-    private String oderID;
+    private int oderID;
     private String productID;
     private String customerID;
     private Date purchaseDate;
-    private int quantity;
+    private int Oquantity;
+    private static int count = 0;
 
     public Order() {
     }
 
-    public Order(String oderID, String customerID, String productID, int quantity, Date purchaseDate) {
-        this.oderID = oderID;
+    public Order(String customerID, String productID, int Oquantity, Date purchaseDate) {
+        this.oderID = ++count;
         this.customerID = customerID;
         this.productID = productID;
-        this.quantity =quantity;
+        this.Oquantity = Oquantity;
         this.purchaseDate = purchaseDate;
     }
 
-    public String getOderID() {
+    public int getOderID() {
         return this.oderID;
     }
 
-    public void setOderID(String oderID) {
+    public void setOderID(int oderID) {
         this.oderID = oderID;
+    }
+
+    public static int getCount() {
+        return Order.count;
+    }
+
+    public static void setCount(int count) {
+        Order.count = count;
     }
 
     public String getProductID() {
@@ -36,12 +45,12 @@ public class Order {
         this.productID = productID;
     }
 
-    public int getQuantity() {
-        return this.quantity;
+    public int getOquantity() {
+        return this.Oquantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setOquantity(int Oquantity) {
+        this.Oquantity = Oquantity;
     }
 
     public String getCustomerID() {
@@ -65,7 +74,7 @@ public class Order {
         return this.oderID +
                 "," + this.customerID +
                 "," + this.productID +
-                "," + this.quantity +
+                "," + this.Oquantity +
                 "," + this.purchaseDate;
     }
 }

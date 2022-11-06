@@ -60,12 +60,10 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id='" + this.id + '\'' +
-                ", name='" + this.name + '\'' +
-                ", yearOB=" + this.yearOB +
-                ", address='" + this.address + '\'' +
-                ", numberPhone='" + this.numberPhone + '\'' +
-                '}';
+        return this.id +
+                "," + this.name +
+                "," + this.yearOB +
+                "," + this.address +
+                "," + this.numberPhone;
     }
 }

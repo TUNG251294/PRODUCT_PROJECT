@@ -1,8 +1,10 @@
 package PRODUCT_MANAGEMENT_PROJECT.customer;
 
+import PRODUCT_MANAGEMENT_PROJECT.AddCustomer;
+
 import java.util.Scanner;
 
-public class CustomerManagementMenu {
+public class CustomerManagementMenu extends AddCustomer {
     CustomerManagement customerManagement = CustomerManagement.getCustomerManagement();
     Scanner scanner = new Scanner(System.in);
     public void menu(){
@@ -25,9 +27,9 @@ public class CustomerManagementMenu {
             switch (choice){
                 case 1: add();
                 break;
-                case 2: update();
+                case 2: updateCustomer();
                 break;
-                case 3: remove();
+                case 3: removeCustomer();
                 break;
                 case 4: searchID();
                 break;
@@ -42,22 +44,11 @@ public class CustomerManagementMenu {
             }
         } while (choice != 0);
     }
-    private void add(){
-        System.out.println("Input customer's ID");
-        String id = scanner.nextLine();
-        System.out.println("Input customer's name");
-        String name = scanner.nextLine();
-        System.out.println("Input customer's Year of birth");
-        int yearOB = Integer.parseInt(scanner.nextLine());
-        System.out.println("Input customer's address");
-        String address = scanner.nextLine();
-        System.out.println("Input customer's numberPhone");
-        String phone = scanner.nextLine();
 
-        Customer newCustomer = new Customer(id,name,yearOB,address,phone);
-        customerManagement.add(newCustomer);
+    public void add(){
+        addCustomer();
     }
-    private void update(){
+    private void updateCustomer(){
         System.out.println("Input customer's id");
         String id = scanner.nextLine();
         System.out.println("Input customer's new name");
@@ -72,7 +63,7 @@ public class CustomerManagementMenu {
 
         customerManagement.update(id,name,yearOB,address,phone);
     }
-    private void remove(){
+    private void removeCustomer(){
         System.out.println("Input customer's id");
         String id = scanner.nextLine();
         customerManagement.remove(id);
@@ -80,7 +71,7 @@ public class CustomerManagementMenu {
     private void searchID(){
         System.out.println("Input customer's ID");
         String id = scanner.nextLine();
-        System.out.println(customerManagement.searchByID(id));
+        System.out.println(customerManagement.searchByCustomerID(id));
     }
     private void searchName(){
         System.out.println("Input customer's name");
@@ -90,4 +81,6 @@ public class CustomerManagementMenu {
     private void displayAll(){
         System.out.println(customerManagement.toString());
     }
+
+
 }

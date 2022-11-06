@@ -15,6 +15,11 @@ public class CustomerManagement {
     private CustomerManagement(){
         customers = new ArrayList<>();
         saveToFile();   /*neu chua co file thi ham nay tao ra file*/
+
+        Customer c1 = new Customer("c01","Tung",1994,"DongNai","0353879313");
+        customers.add(c1);
+        saveToFile();
+
         readFromFile();
     }
     public void add(Customer c){
@@ -22,7 +27,7 @@ public class CustomerManagement {
         saveToFile();
     }
     public boolean remove(String id){
-        Customer customerSearch = searchByID(id);
+        Customer customerSearch = searchByCustomerID(id);
         if(customerSearch != null){
             customers.remove(customerSearch);
             saveToFile();
@@ -30,7 +35,7 @@ public class CustomerManagement {
         }
         return false;
     }
-    public Customer searchByID(String id){
+    public Customer searchByCustomerID(String id){
         for (Customer c: customers){
             if (c.getId().equals(id)){
                 return c;

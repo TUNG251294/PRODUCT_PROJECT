@@ -7,23 +7,29 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ProductManagement {
-    private HashMap<Product,Integer> products;
+    private ArrayList<Product> products;
     private final String PATH = "PRODUCT_MANAGEMENT_PROJECT/product/productList.csv";
     private static ProductManagement productManagement = new ProductManagement();
     public static ProductManagement getProductManagement(){
         return productManagement;
     }
-    private ProductManagement(){
-        products = new HashMap<>();
-//        Product product1 = new Product("product01", "Thit vit", 29900, new Date(122, 8, 10), 5);
-//
-//        products.put(product1, product1.getQuantity());
+    public ProductManagement(){
+        products = new ArrayList<>();
         saveToFile();   /*neu chua co file thi ham nay tao ra file*/
+
+        Product p1 = new Product("vina01","Vinamilk",35000,new Date(122,12,31),100);    /*add cung*/
+        Product p2 = new Product("vina02","Vinamilk",37000,new Date(123,01,31),200);
+        Product p3 = new Product("Milo01","Milo",28000,new Date(123,06,30),150);
+        products.add(p1);
+        products.add(p2);
+        products.add(p3);
+        saveToFile();
+
         readFromFile();
     }
 
     public void add(Product p){
-        products.put(p,p.getQuantity());
+        products.add(p);
         saveToFile();
     }
 
@@ -47,10 +53,9 @@ public class ProductManagement {
         }
     }
 
-    public ArrayList<Product> searchByName(String name){    /*SAI*/
-        Set<Product> keys = products.keySet();
+    public ArrayList<Product> searchByName(String name){    /*Neu Map thi dung Set<Product> keys = products.keySet(); de duyet phan tu*/
         ArrayList<Product> arrList = new ArrayList<>();
-        for (Product p: keys){
+        for (Product p: products){
             if(p.getName().equals(name)){
                 arrList.add(p);
             }
@@ -59,8 +64,7 @@ public class ProductManagement {
     }
 
     public Product searchByID(String id){
-        Set<Product> keys = products.keySet();
-        for (Product p: keys){
+        for (Product p: products){    /*Neu Map thi dung for (Map.Entry<Product,Integer> p: products.entrySet()) de duyet*/
             if(p.getId().equals(id)){
                 return p;
             }
@@ -69,15 +73,11 @@ public class ProductManagement {
     }
     public void saveToFile(){
         try {
-//            Set<Product> keys = products.keySet();
-
             FileWriter fileWriter = new FileWriter(PATH);
             BufferedWriter cache = new BufferedWriter(fileWriter);
-            for (Map.Entry<Product, Integer> p: products.entrySet()){
-                cache.write(p.getKey().toString());
-                cache.write(",");
-                cache.write(p.getValue().toString());
-                cache.newLine();
+            for (Product p: products){
+                cache.write(p.toString());  //Neu dung Map thi co them 1 dau phay va 1 gia tri value nên se them cache.write(",");
+                cache.newLine();            //cache.write(p.getValue().toString());
             }
             cache.close();
             fileWriter.close();
@@ -96,10 +96,7 @@ public class ProductManagement {
             Product p;
             while ((line = cache02.readLine()) != null){
                 p = handLine(line);
-//                System.out.println(p);
-                products.put(p,p.getQuantity());
-//                System.out.println(products);
-
+                products.add(p);
             }
             cache02.close();
             fileReader.close();
@@ -123,9 +120,7 @@ public class ProductManagement {
 
     String display(){
         String productList = "";
-//        Set<Product> keys = products.keySet();
-//        System.out.println(keys);
-        for (Map.Entry<Product, Integer> p: products.entrySet()){
+        for (Product p: products){
             productList += p.toString() + "\n";
         }
         return productList;
