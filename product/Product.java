@@ -22,7 +22,7 @@ public class Product {
     }
 
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -30,7 +30,7 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -38,7 +38,7 @@ public class Product {
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(double price) {
@@ -46,7 +46,7 @@ public class Product {
     }
 
     public Date getExpiry() {
-        return expiry;
+        return this.expiry;
     }
 
     public void setExpiry(Date expiry) {
@@ -54,7 +54,7 @@ public class Product {
     }
 
     public int getQuantity() {
-        return quantity;
+        return this.quantity;
     }
 
     public void setQuantity(int quantity) {
@@ -65,11 +65,11 @@ public class Product {
     public String toString() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String expiry = simpleDateFormat.format(this.expiry);
-        return id +
-                "," + name +
-                "," + price +
+        return this.id +
+                "," + this.name +
+                "," + this.price +
                 "," + expiry +
-                "," + quantity;
+                "," + this.quantity;
     }
 }
 

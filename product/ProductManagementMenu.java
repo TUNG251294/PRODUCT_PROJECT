@@ -18,9 +18,8 @@ public class ProductManagementMenu {
         System.out.println("3.Remove a product");
         System.out.println("4.Search by ID");
         System.out.println("5.Search by name");
-        System.out.println("6.Save from file");
-        System.out.println("7.Read to file");
-        System.out.println("8.Display all");
+        System.out.println("6.Display all");
+        System.out.println("0.Exit");
     }
 
 
@@ -48,12 +47,6 @@ public class ProductManagementMenu {
                     searchName();
                     break;
                 case 6:
-                    save();
-                    break;
-                case 7:
-                    read();
-                    break;
-                case 8:
                     displayAll();
                     break;
                 case 0:
@@ -71,7 +64,8 @@ public class ProductManagementMenu {
         String name = scanner.nextLine();
         System.out.println("Input product's price");
         Double price = scanner.nextDouble();
-        scanner.nextLine();
+        scanner.nextLine(); /*phải có .nextLine() hoặc dùng cách:
+        Double price = Double.parseDouble(scanner.nextLine());  */
         System.out.println("Input expiry: MM/dd/yyyy");
         String str = scanner.nextLine();
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -123,22 +117,22 @@ public class ProductManagementMenu {
     private void searchID(){
         System.out.println("Input product's ID");
         String id = scanner.nextLine();
-        productManagement.searchByID(id);
+        System.out.println(productManagement.searchByID(id));
     }
 
     private void searchName(){
         System.out.println("Input product's name");
         String name = scanner.nextLine();
-        productManagement.searchByID(name);
+        System.out.println(productManagement.searchByName(name));
     }
 
-    private void save(){
-        productManagement.saveToFile();
-    }
-
-    private void read(){
-        productManagement.readFromFile();
-    }
+//    private void save(){
+//        productManagement.saveToFile();
+//    }
+//
+//    private void read(){
+//        productManagement.readFromFile();
+//    }
     public void displayAll(){
         System.out.println(productManagement.display());
     }

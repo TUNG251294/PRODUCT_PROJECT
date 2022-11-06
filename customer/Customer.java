@@ -10,8 +10,16 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String id, String name, int yearOB, String address, String numberPhone) {
+        this.id = id;
+        this.name = name;
+        this.yearOB = yearOB;
+        this.address = address;
+        this.numberPhone = numberPhone;
+    }
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -19,7 +27,7 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -27,7 +35,7 @@ public class Customer {
     }
 
     public int getYearOB() {
-        return yearOB;
+        return this.yearOB;
     }
 
     public void setYearOB(int yearOB) {
@@ -35,7 +43,7 @@ public class Customer {
     }
 
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address) {
@@ -43,7 +51,7 @@ public class Customer {
     }
 
     public String getNumberPhone() {
-        return numberPhone;
+        return this.numberPhone;
     }
 
     public void setNumberPhone(String numberPhone) {
@@ -53,11 +61,11 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", yearOB=" + yearOB +
-                ", address='" + address + '\'' +
-                ", numberPhone='" + numberPhone + '\'' +
+                "id='" + this.id + '\'' +
+                ", name='" + this.name + '\'' +
+                ", yearOB=" + this.yearOB +
+                ", address='" + this.address + '\'' +
+                ", numberPhone='" + this.numberPhone + '\'' +
                 '}';
     }
 }

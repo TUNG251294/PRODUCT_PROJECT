@@ -18,16 +18,20 @@ public class ProductManagement {
 //        Product product1 = new Product("product01", "Thit vit", 29900, new Date(122, 8, 10), 5);
 //
 //        products.put(product1, product1.getQuantity());
+        saveToFile();   /*neu chua co file thi ham nay tao ra file*/
+        readFromFile();
     }
 
     public void add(Product p){
         products.put(p,p.getQuantity());
+        saveToFile();
     }
 
     public void remove(String id){
         Product productSearch = searchByID(id);
         if(productSearch != null){
             products.remove(productSearch);
+            saveToFile();
         }
     }
 
@@ -39,19 +43,19 @@ public class ProductManagement {
             productSearch.setPrice(price);
             productSearch.setExpiry(expiry);
             productSearch.setQuantity(quantity);
+            saveToFile();
         }
     }
 
     public ArrayList<Product> searchByName(String name){    /*SAI*/
         Set<Product> keys = products.keySet();
-        ArrayList<Product> arr = null;
+        ArrayList<Product> arrList = new ArrayList<>();
         for (Product p: keys){
             if(p.getName().equals(name)){
-                arr.add(p);
-                return arr;
+                arrList.add(p);
             }
         }
-        return null;
+        return arrList;
     }
 
     public Product searchByID(String id){
