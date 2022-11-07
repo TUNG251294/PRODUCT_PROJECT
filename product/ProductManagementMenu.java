@@ -16,9 +16,11 @@ public class ProductManagementMenu {
         System.out.println("1.Add a product");
         System.out.println("2.Update a product");
         System.out.println("3.Remove a product");
-        System.out.println("4.Search by ID");
-        System.out.println("5.Search by name");
-        System.out.println("6.Display all");
+        System.out.println("4.Handle expired products");
+        System.out.println("5.Display almost expired product list");
+        System.out.println("6.Search by ID");
+        System.out.println("7.Search by name");
+        System.out.println("8.Display all");
         System.out.println("0.Exit");
     }
 
@@ -40,13 +42,17 @@ public class ProductManagementMenu {
                 case 3:
                     remove();
                     break;
-                case 4:
-                    searchID();
+                case 4: handleExpired();    /*di chuyen expired products khoi kho*/
                     break;
-                case 5:
-                    searchName();
+                case 5: alertExpired();     /*in ra arraylist nhung product co expiry < 30days*/
                     break;
                 case 6:
+                    searchID();
+                    break;
+                case 7:
+                    searchName();
+                    break;
+                case 8:
                     displayAll();
                     break;
                 case 0:
@@ -112,6 +118,13 @@ public class ProductManagementMenu {
         System.out.println("Input ID");
         String id = scanner.nextLine();
         productManagement.remove(id);
+    }
+    private void handleExpired(){
+        productManagement.expired();
+    }
+
+    private void alertExpired(){
+        System.out.println(productManagement.almostExpired());
     }
 
     private void searchID(){

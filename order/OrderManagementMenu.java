@@ -31,6 +31,7 @@ public class OrderManagementMenu extends AddCustomer {
             menu();
             System.out.println("Input your choice");
             choice = Integer.parseInt(scanner.nextLine());
+
             switch (choice){
                 case 1: addOrder();
                 break;

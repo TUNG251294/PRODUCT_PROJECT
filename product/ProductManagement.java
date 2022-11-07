@@ -4,7 +4,8 @@ import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class ProductManagement {
     private ArrayList<Product> products;
@@ -53,6 +54,64 @@ public class ProductManagement {
         }
     }
 
+//    public void expired(){
+//        Iterator productsIterator = products.iterator();
+//        while (productsIterator.hasNext()){
+//            Product p = products.iterator().next();
+//            Date date = new Date();                           /*de tham khao chu sai roi*/
+//            if(date.after(p.getExpiry())){
+//                products.remove(p);
+//            }
+//        }
+//        saveToFile();
+//    }
+
+//    public void expired(){
+//        int count = 0;
+//        for (Product p: products) {
+//            Date date = new Date();
+//            if (date.after(p.getExpiry())) {
+//                products.remove(p);
+//            }
+//
+//            if (products.size() == count) {
+//                break;
+//            }
+//            count++;                          /*cho nay co the sai logic*/
+//        }
+//        saveToFile();
+//    }
+public void expired(){
+    for (int i = 0; i < products.size(); i++) {
+        Date date = new Date();
+        Product p = products.get(i);
+        if (date.after(p.getExpiry())) {
+            products.remove(p);
+        }
+    }
+    saveToFile();
+}
+
+    public long dayDiff(String id){ /*tra ve so ngay giua HSD va hien tai*/
+        Product p = searchByID(id);
+        Date date = new Date();
+        Date dateExpiry = p.getExpiry();
+        long diff = dateExpiry.getTime() - date.getTime();
+        long dayDiff = diff/(86400*1000);
+        return dayDiff;
+}
+
+    public ArrayList<Product> almostExpired(){  /*tra ve arraylist product co expiry <30days*/
+        ArrayList<Product> arrayList = new ArrayList<>();
+        for(Product p: products){
+            String id = p.getId();
+            if(dayDiff(id) <= 30){
+                arrayList.add(p);
+            }
+        }
+        return arrayList;   /*nhung ham khong co anh huong len kho thi khong co saveToFile()
+        */
+    }
     public ArrayList<Product> searchByName(String name){    /*Neu Map thi dung Set<Product> keys = products.keySet(); de duyet phan tu*/
         ArrayList<Product> arrList = new ArrayList<>();
         for (Product p: products){
